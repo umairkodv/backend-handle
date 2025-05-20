@@ -19,13 +19,11 @@ app.get("/test", (req, res) => {
 
 app.post("/create-payment-intent", async (req, res) => {
     try {
-        console.log("Incoming request body:", req.body);
-        console.log("Stripe secret key exists:", !!process.env.STRIPE_SECRET_KEY);
-
         const { amount } = req.body;
 
-        if (!amount || typeof amount !== "number") {
-            throw new Error("Invalid amount provided");
+        // Validate amount
+        if (!amount || typeof amount !== "number" || amount <= 0) {
+            return res.status(400).send({ error: "Invalid amount provided" });
         }
 
         const paymentIntent = await stripe.paymentIntents.create({
@@ -33,13 +31,11 @@ app.post("/create-payment-intent", async (req, res) => {
             currency: "usd",
         });
 
-        console.log("PaymentIntent created:", paymentIntent.id);
-
         res.send({
             clientSecret: paymentIntent.client_secret,
         });
     } catch (err) {
-        console.error("Error creating PaymentIntent:", err.message);
+        console.error(err);
         res.status(500).send({ error: err.message });
     }
 });
