@@ -6,13 +6,12 @@ const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 router.post("/send-confirmation-email", async (req, res) => {
-  const {
-    name,
-    email,
-    phone,
-    boothType,
-    totalPrice
-  } = req.body;
+  const { name, email, phone, boothType, totalPrice } = req.body;
+
+  // Check for missing or empty fields
+  if (!name || !email || !phone || !boothType || !totalPrice) {
+    return res.status(400).json({ success: false, message: "All fields are required." });
+  }
 
   const message = `
     New Vendor Registration:
@@ -22,8 +21,6 @@ router.post("/send-confirmation-email", async (req, res) => {
     Phone: ${phone}
     Booth Type: ${boothType}
     Total Paid: $${totalPrice}
-
-    Please follow up with the registrant accordingly.
   `;
 
   const msg = {
@@ -31,7 +28,7 @@ router.post("/send-confirmation-email", async (req, res) => {
       "zubairkhanyousafzaie@gmail.com",
       "backendtmw@gmail.com"
     ],
-    from: "events@africatownlandtrust.org", // must be verified with SendGrid
+    from: "events@africatownlandtrust.org",
     subject: "New Vendor Registration",
     text: message
   };
@@ -40,14 +37,12 @@ router.post("/send-confirmation-email", async (req, res) => {
     await sgMail.send(msg);
     res.status(200).json({ success: true, message: "Email sent." });
   } catch (error) {
-  console.error("SendGrid Error:", error);
-
-  if (error.response) {
-    console.error("SendGrid response body:", error.response.body);
+    console.error("SendGrid Error:", error);
+    if (error.response) {
+      console.error("SendGrid response body:", error.response.body);
+    }
+    res.status(500).json({ success: false, message: "Failed to send email." });
   }
-
-  res.status(500).json({ success: false, message: "Failed to send email." });
-}
 });
 
 module.exports = router;
