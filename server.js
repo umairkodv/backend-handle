@@ -9,6 +9,9 @@ const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 app.use(cors());
 app.use(express.json());
 
+// api for mail
+app.use("/api", require("./send-email"));
+
 // Debug test route (optional)
 app.get("/test", (req, res) => {
     res.send({
