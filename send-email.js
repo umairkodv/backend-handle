@@ -40,9 +40,14 @@ router.post("/send-confirmation-email", async (req, res) => {
     await sgMail.send(msg);
     res.status(200).json({ success: true, message: "Email sent." });
   } catch (error) {
-    console.error("SendGrid Error:", error);
-    res.status(500).json({ success: false, message: "Failed to send email." });
+  console.error("SendGrid Error:", error);
+
+  if (error.response) {
+    console.error("SendGrid response body:", error.response.body);
   }
+
+  res.status(500).json({ success: false, message: "Failed to send email." });
+}
 });
 
 module.exports = router;
