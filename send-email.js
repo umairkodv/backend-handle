@@ -46,7 +46,7 @@ router.post("/send-confirmation-email", async (req, res) => {
   `;
 
   const adminEmail = {
-    to: "zubairkhanyousafzaie@gmail.com",
+    to: "marketing@africatownlandtrust.org",
     from: "marketing@africatownlandtrust.org",
     subject: "New Vendor Registration",
     text: adminMessage
