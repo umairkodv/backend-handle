@@ -12,38 +12,38 @@ router.post("/send-confirmation-email", async (req, res) => {
     return res.status(400).json({ success: false, message: "All fields are required." });
   }
 
-  // Message to admin
-  const adminMessage = `
-    New Vendor Registration:
+// Message to admin
+const adminMessage = `
+New Vendor Registration:
 
-    Business/Organization Name: ${business_organization}
-    Name: ${name}
-    Email: ${email}
-    Phone: ${phone}
-    Booth Type: ${boothType}
-    Total Paid: $${totalPrice}
-  `;
+Business/Organization Name: ${business_organization}
+Name: ${name}
+Email: ${email}
+Phone: ${phone}
+Booth Type: ${boothType}
+Total Paid: $${totalPrice}
+`;
 
   // Message to client
   const clientMessage = `
-    Hello ${name},
+Hello ${name},
 
-    Congratulations! We’ve received your payment for a Juneteenth vendor space, and your spot is officially reserved.
+Congratulations! We’ve received your payment for a Juneteenth vendor space, and your spot is officially reserved.
 
-    To finalize your registration, please complete your Vendor Registration Form as soon as possible.
+To finalize your registration, please complete your Vendor Registration Form as soon as possible.
 
-    Your registration is not considered complete until we receive your form.
+Your registration is not considered complete until we receive your form.
 
-    Click on the Link: https://form.jotform.com/Africatown_Community/juneteenth-2025
+Click on the Link: https://form.jotform.com/Africatown_Community/juneteenth-2025
 
-    If you have any questions, please contact us at info@kingcountyequity.com.
+If you have any questions, please contact us at info@kingcountyequity.com.
 
-    Best regards,  
-    Africatown Land Trust Team
-  `;
+Best regards,  
+Africatown Land Trust Team
+`;
 
   const adminEmail = {
-    to: "backendtmw@gmail.com",
+    to: "marketing@africatownlandtrust.org",
     from: "marketing@africatownlandtrust.org",
     subject: "New Vendor Registration",
     text: adminMessage
