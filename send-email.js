@@ -6,7 +6,7 @@ const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 router.post("/send-confirmation-email", async (req, res) => {
-  const { name, email, phone, boothType, totalPrice } = req.body;
+  const { business_organization, name, email, phone, boothType, totalPrice } = req.body;
 
   // Check for missing or empty fields
   if (!name || !email || !phone || !boothType || !totalPrice) {
@@ -16,6 +16,7 @@ router.post("/send-confirmation-email", async (req, res) => {
   const message = `
     New Vendor Registration:
 
+    Business/Organization Name: ${business_organization}
     Name: ${name}
     Email: ${email}
     Phone: ${phone}
