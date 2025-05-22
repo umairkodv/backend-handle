@@ -28,18 +28,15 @@ router.post("/send-confirmation-email", async (req, res) => {
   const clientMessage = `
     Hello ${name},
 
-    Thank you for registering as a vendor with Africatown Land Trust!
+    Congratulations! We’ve received your payment for a Juneteenth vendor space, and your spot is officially reserved.
 
-    We’ve received your payment of $${totalPrice} and your registration details:
+    To finalize your registration, please complete your Vendor Registration Form as soon as possible.
 
-    Business/Organization Name: ${business_organization}
-    Name: ${name}
-    Email: ${email}
-    Phone: ${phone}
-    Booth Type: ${boothType}
-    Total Paid: $${totalPrice}
+    Your registration is not considered complete until we receive your form.
 
-    We look forward to seeing you at the event!
+    Click on the Link: https://form.jotform.com/Africatown_Community/juneteenth-2025
+
+    If you have any questions, please contact us at info@kingcountyequity.com.
 
     Best regards,  
     Africatown Land Trust Team
@@ -55,7 +52,7 @@ router.post("/send-confirmation-email", async (req, res) => {
   const clientEmail = {
     to: email,
     from: "marketing@africatownlandtrust.org",
-    subject: "Thank You for Registering with Africatown",
+    subject: "Vendor Registration Fee Payment Confirmation",
     text: clientMessage
   };
 
