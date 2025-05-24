@@ -43,7 +43,7 @@ Africatown Land Trust Team
 `;
 
   const adminEmail = {
-    to: "marketing@africatownlandtrust.org",
+    to: ["marketing@africatownlandtrust.org", "blacetbrianna@gmail.com", "backendtmw@gmail.com"],
     from: "marketing@africatownlandtrust.org",
     subject: "New Vendor Registration",
     text: adminMessage
