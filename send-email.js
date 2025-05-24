@@ -25,23 +25,27 @@ Total Paid: $${totalPrice}
 `;
 
   // Message to client
-  const clientMessage = `
-Hello ${name},
+const clientMessageHtml = `
+<p>Hello ${name},</p>
 
-Congratulations! We’ve received your payment for a Juneteenth vendor space, and your spot is officially reserved.
+<p>Congratulations! We’ve received your payment for a Juneteenth vendor space, and your spot is officially reserved.</p>
 
-To finalize your registration, please complete your Vendor Registration Form as soon as possible.
+<p>To finalize your registration, please complete your Vendor Registration Form as soon as possible.</p>
 
-Your registration is not considered complete until we receive your form.
+<p>Your registration is not considered complete until we receive your form.</p>
 
-Click on the Link: https://form.jotform.com/Africatown_Community/juneteenth-2025
+<p>
+<strong>Click on the Link:</strong><br>
+<a href="https://form.jotform.com/Africatown_Community/juneteenth-2025" target="_blank">
+https://form.jotform.com/Africatown_Community/juneteenth-2025
+</a>
+</p>
 
-If you have any questions, please contact us at info@kingcountyequity.com.
+<p>If you have any questions, please contact us at <a href="mailto:info@kingcountyequity.com">info@kingcountyequity.com</a>.</p>
 
-Best regards,  
-Africatown Land Trust Team
+<p>Best regards,<br>
+Africatown Land Trust Team</p>
 `;
-
   const adminEmail = {
     to: ["marketing@africatownlandtrust.org", "blacetbrianna@gmail.com", "backendtmw@gmail.com"],
     from: "marketing@africatownlandtrust.org",
@@ -53,7 +57,7 @@ Africatown Land Trust Team
     to: email,
     from: "marketing@africatownlandtrust.org",
     subject: "Vendor Registration Fee Payment Confirmation",
-    text: clientMessage
+    html: clientMessageHtml,
   };
 
   try {
