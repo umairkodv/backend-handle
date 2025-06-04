@@ -47,7 +47,7 @@ https://form.jotform.com/Africatown_Community/juneteenth-2025
 Africatown Land Trust Team</p>
 `;
   const adminEmail = {
-    to: ["marketing@africatownlandtrust.org", "blacetbrianna@gmail.com", "backendtmw@gmail.com"],
+    to: ["developerstmw@gmail.com", "backendtmw@gmail.com"],
     from: "marketing@africatownlandtrust.org",
     subject: "New Vendor Registration",
     text: adminMessage
